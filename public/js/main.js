@@ -19,8 +19,28 @@ const socket = io();
 socket.emit('joinRoom', { username, room });
 
 socket.on('message',(message)=>{
-    outputMessage(message)
+    outputMessage(message);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 })
+
+socket.on('roomUsers', ({ room, users }) => {
+    outputRoomName(room);
+    outputUsers(users);
+})
+
+function outputRoomName(room){
+    roomName.innerText = room;
+}
+
+function outputUsers(users){
+    userList.innerHTML = '';
+    users.forEach((user) => {
+        const li = document.createElement('li');
+        li.innerText = user.username;
+        userList.appendChild(li);
+    });
+}
+
 function outputMessage(message){
     const div = document.createElement('div');
     div.classList.add('message');
@@ -35,3 +55,34 @@ function outputMessage(message){
     div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
 }
+
+//Prompt the user before leave chat room
+document.getElementById('leave-btn').addEventListener('click', () => {
+  const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+  if (leaveRoom) {
+    window.location = '../index.html';
+  } else {
+  }
+});
+
+
+chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+   
+    // Get message text
+    let msg = e.target.elements.msg.value;
+   
+    msg = msg.trim();
+   
+    if (!msg) {
+      return false;
+    }
+   
+    // Emit message to server
+    socket.emit('chatMessage', msg);
+   
+    // Clear input
+    e.target.elements.msg.value = '';
+    e.target.elements.msg.focus();
+  });
+ 
