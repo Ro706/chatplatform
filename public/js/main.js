@@ -26,7 +26,7 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
-  console.log(message);
+  // console.log(message);
   outputMessage(message);
 
   // Scroll down
@@ -61,7 +61,7 @@ function outputMessage(message) {
   const p = document.createElement('p');
   p.classList.add('meta');
   p.innerText = message.username;
-  p.innerHTML += `<span>${message.time}</span>`;
+  p.innerHTML += `<span>&nbsp; ${message.time}</span>`;
   div.appendChild(p);
   const para = document.createElement('p');
   para.classList.add('text');

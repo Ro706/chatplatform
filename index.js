@@ -14,7 +14,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 const server = http.createServer(app);
 const io=socketio(server);
-const botName = "Admin";
+const botName = "Admin ";
 io.on('connection', (socket)=>{
     // socket represents an actual user
     // emit a endt to the client 
