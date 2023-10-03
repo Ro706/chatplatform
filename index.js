@@ -47,17 +47,11 @@ io.on('connection', (socket)=>{
       });
      
       // Listen for chatMessage
-      io.on("connection", (socket) => {
- 
-        socket.on("chatMessage", (msg) => {
-          const user = getCurrentUser(socket.id);
-        //   io.to(user.room).emit("message", formatMessage(user.username, msg));
-        //   stop sending multiple messages
-        io.to(user.room).emit("message", formatMessage(user.username, msg));
-
-        });
-       
-      });
+        // Listen for chatMessage
+  socket.on("chatMessage", (msg) => {
+    const user = getCurrentUser(socket.id);
+    io.to(user.room).emit("message", formatMessage(user.username, msg));
+  });
      
       // Runs when client disconnects
       socket.on("disconnect", () => {
