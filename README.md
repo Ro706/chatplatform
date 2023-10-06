@@ -6,7 +6,7 @@ Ro706 - https://github.com/ro706/chatplatform.git
 ```
 git clone https://github.com/ro706/chatplatform.git
 cd chatroom 
-$npm install express 
+$npm install express  
 $npm install nodemon -D` 
 $nodemon index.js 
 ```
