@@ -27,4 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i express moment nodemon
+    - run: npm install nodemon -D` 
     - run: nodemon index.js
