@@ -5,7 +5,7 @@ LAN messaging software is a type of software that allows users to communicate wi
 Ro706 - https://github.com/ro706/chatplatform.git
 ```
 git clone https://github.com/ro706/chatplatform.git
-cd chatroom 
+cd chatplatform
 $npm install express  
 $npm install nodemon -D` 
 $nodemon index.js 
